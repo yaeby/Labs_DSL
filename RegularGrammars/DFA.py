@@ -17,13 +17,6 @@ class DFA :
             w = w[1:]
         return q in self.F    
     
-    def prin(self):
-        print(self.Q)
-        print(self.Sigma)
-        print(self.delta)
-        print(self.q0)
-        print(self.F)
-
     # def gen_string(self):
     #     q = self.q0
     #     w=""

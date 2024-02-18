@@ -2,17 +2,23 @@ from DFA import DFA
 from Grammar import Grammar
 
 def commands():
+    print("")
     print("h - Help")
     print("g - Generate strings")
     print("f - Check appartanence")
     print("exit - End program")
+    print("")
 
 def command_1():
+    print("")
     command = int(input("Insert the number of words: "))
+    print("")
     return command  
 
 def command_2():
+    print("")
     command = str(input("Insert the word: "))
+    print("")
     return command   
 
 D0 = Grammar(["S", "I", "J", 'K'],
