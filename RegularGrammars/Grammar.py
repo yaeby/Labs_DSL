@@ -1,7 +1,7 @@
 import random
 
 class Grammar:
-    def __init__(self, _VN: list, _VT: list, _P: dict) -> None:
+    def __init__(self, _VN, _VT, _P) :
         self.nonterminals = _VN
         self.terminals = _VT
         self.productions = _P
@@ -31,7 +31,7 @@ class Grammar:
 
     def generate_strings(self) -> list:
         ans = []
-        while (len(ans) < 5):
+        while (len(ans) < 1):
             word = self.generate_string()
             if word not in ans:
                 ans.append(word)
