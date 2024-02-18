@@ -28,11 +28,3 @@ class Grammar:
 
     def __pick_replacement(self, productions: list) -> str:
         return random.choice(productions)
-
-    def generate_strings(self) -> list:
-        ans = []
-        while (len(ans) < 1):
-            word = self.generate_string()
-            if word not in ans:
-                ans.append(word)
-        return ans

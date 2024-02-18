@@ -29,11 +29,6 @@ D1 = DFA({0,1,2,3,4},
           0,
           {0,3})
 
-print(D0.generate_strings())
-
-print(D1.run("cbccennnnnnm"))
-
-
 commands()
 while True:
     command = input("Insert command: ")
@@ -41,9 +36,13 @@ while True:
         commands()
 
     elif command == 'g':
-        n = command_1()
-        for i in range(n-1):
-            print(D0.generate_strings())
+        number_of_words = command_1()
+        words = []
+        while (len(words) < number_of_words):
+            word = D0.generate_string()
+            if word not in words:
+                words.append(word)
+        print(*map(str, words), sep='\n')       
 
     elif command == 'f':
         word = command_2()
