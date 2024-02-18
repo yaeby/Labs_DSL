@@ -1,0 +1,2 @@
+obj = Command()
+obj.commands()

@@ -1,25 +1,6 @@
 from DFA import DFA 
 from Grammar import Grammar
-
-def commands():
-    print("")
-    print("h - Help")
-    print("g - Generate strings")
-    print("f - Check appartanence")
-    print("exit - End program")
-    print("")
-
-def command_1():
-    print("")
-    command = int(input("Insert the number of words: "))
-    print("")
-    return command  
-
-def command_2():
-    print("")
-    command = str(input("Insert the word: "))
-    print("")
-    return command   
+from Command import Command
 
 D0 = Grammar(["S", "I", "J", 'K'],
             ["b", "c", "e", "n", "m"],
@@ -35,24 +16,27 @@ D1 = DFA({0,1,2,3,4},
           0,
           {0,3})
 
-commands()
+obj = Command("John")
+obj.commands()
 while True:
     command = input("Insert command: ")
     if command == 'h':
-        commands()
+        obj.commands()
 
     elif command == 'g':
-        number_of_words = command_1()
+        number_of_words = obj.command_1()
         words = []
         while (len(words) < number_of_words):
             word = D0.generate_string()
             if word not in words:
                 words.append(word)
-        print(*map(str, words), sep='\n')       
+        print(*map(str, words), sep='\n')
+        print("")       
 
     elif command == 'f':
-        word = command_2()
+        word = obj.command_2()
         print(D1.run(word))
+        print("")
 
     elif command == "exit":
         print("Program finished.")
