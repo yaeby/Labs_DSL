@@ -1,8 +1,5 @@
 class Command:
 
-    def __init__(self, name):
-        self.name = name
-
     @staticmethod
     def commands():
         print("")
@@ -12,14 +9,16 @@ class Command:
         print("exit - End program")
         print("")
 
-    def command_1(self):
+    @staticmethod
+    def command_1():
         print("")
-        command = int(input("Insert the number of words: "))
+        number_of_words = input("Insert number of words: ")
         print("")
-        return command  
+        return int(number_of_words)
 
-    def command_2(self):
+    @staticmethod
+    def command_2():
         print("")
-        command = str(input("Insert the word: "))
+        word = str(input("Insert word: "))
         print("")
-        return command
+        return word

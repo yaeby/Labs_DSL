@@ -16,15 +16,17 @@ D1 = DFA({0,1,2,3,4},
           0,
           {0,3})
 
-obj = Command("John")
-obj.commands()
+
+Command.commands()
+
 while True:
+    
     command = input("Insert command: ")
     if command == 'h':
-        obj.commands()
+        Command.commands()
 
     elif command == 'g':
-        number_of_words = obj.command_1()
+        number_of_words = Command.command_1()
         words = []
         while (len(words) < number_of_words):
             word = D0.generate_string()
@@ -34,7 +36,7 @@ while True:
         print("")       
 
     elif command == 'f':
-        word = obj.command_2()
+        word = Command.command_2()
         print(D1.run(word))
         print("")
 
