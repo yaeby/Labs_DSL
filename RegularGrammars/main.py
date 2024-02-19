@@ -37,7 +37,7 @@ while True:
 
     elif command == 'f':
         word = Command.command_2()
-        print(D1.run(word))
+        print(D1.check(word))
         print("")
 
     elif command == "exit":
