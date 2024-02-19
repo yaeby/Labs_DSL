@@ -1,2 +1,0 @@
-obj = Command()
-obj.commands()
