@@ -15,11 +15,4 @@ class DFA :
         while w!="" :
             q = self.delta[(q,w[0])]
             w = w[1:]
-        return q in self.F    
-    
-    # def gen_string(self):
-    #     q = self.q0
-    #     w=""
-    #     while q != self.F:
-    #         w = w + self.delta[(q,)]
-    #         q = self.delta[(q)]
+        return q in self.F        

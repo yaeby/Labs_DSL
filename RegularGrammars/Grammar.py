@@ -7,24 +7,24 @@ class Grammar:
         self.P = P
 
     def generate_string(self, word="S"):
-        while (not self.word_is_terminal(word)):
+        while (not self.check_word(word)):
             for char in word:
-                if not self.char_is_terminal(char):
-                    production = self.__pick_replacement(
+                if not self.check_symbol(char):
+                    production = self.replace(
                         self.P[char])
                     word = word.replace(char, production)
         return word
 
-    def word_is_terminal(self, word):
+    def check_word(self, word):
         for char in word:
             if char in self.V_n:
                 return False
         return True
 
-    def char_is_terminal(self, char):
+    def check_symbol(self, char):
         if char in self.V_n:
             return False
         return True
 
-    def __pick_replacement(self, P):
+    def replace(self, P):
         return random.choice(P)
