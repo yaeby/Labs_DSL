@@ -10,7 +10,7 @@ class DFA :
     def __repr__(self) :
         return f"DFA({self.Q},\n\t{self.Sigma},\n\t{self.delta},\n\t{self.q0},\n\t{self.F})"
     
-    def run (self,w) :
+    def check (self,w) :
         q = self.q0
         while w!="" :
             q = self.delta[(q,w[0])]
