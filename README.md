@@ -1,4 +1,4 @@
-# Labs_DSL
+# Labs_FLA
 
 University laboratory works at Formal Languages & Automata
 
