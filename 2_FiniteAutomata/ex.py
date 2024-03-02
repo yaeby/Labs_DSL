@@ -34,7 +34,7 @@ transition_function = {
     ('q4', 'b'): ['q4'],
 }
 initial_state = 'q0'
-final_states = {'q4'}
+final_states = {'q0''q4'}
 
 result = is_deterministic(states, alphabet, transition_function, initial_state, final_states)
 print("Is Deterministic:", result)
