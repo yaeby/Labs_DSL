@@ -37,18 +37,3 @@ else:
     print("The Finite Automaton is not deterministic.")
     regular_grammar = fa.nfa_to_regular_grammar()
     Print.print_grammar(Vn=states, Vt=input_symbols, regular_grammar=regular_grammar)
-
-# production_strings = []
-# # Print the resulting regular grammar with '|' symbol
-# for non_terminal, production_rhs_list in regular_grammar.items():
-#     production_string = f"{non_terminal} -> {' | '.join(production_rhs_list)}"
-#     production_strings.append(production_string)
-#     #print("\n".join(production_strings))
-# print(production_strings)
-
-# for i, string in enumerate(production_strings):
-#     pattern = re.compile(r'q\d')  # Match any q followed by a digit
-#     replacement_letter = chr(ord('A') + i)  # Get the uppercase letter based on index
-#     modified_string = pattern.sub(replacement_letter, string)
-#     production_strings[i] = modified_string
-# print("\n".join(production_strings))
