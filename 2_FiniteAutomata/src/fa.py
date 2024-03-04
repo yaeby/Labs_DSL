@@ -86,3 +86,68 @@ class FiniteAutomata:
             grammar[non_terminal].append(production_rhs)
 
         return grammar
+    
+    def powerset(self, states):
+        result = []
+        for i in range(1 << len(states)):
+            result.append(frozenset(states[j] for j in range(len(states)) if (i & (1 << j)) != 0))
+        return result
+
+    def epsilon_closure(self, state):
+        closure = set()
+        stack = [state]
+
+        while stack:
+            current_state = stack.pop()
+            closure.add(current_state)
+
+            if '' in self.delta.get(current_state, {}):
+                epsilon_transitions = self.delta[current_state]['']
+                stack.extend(state for state in epsilon_transitions if state not in closure)
+
+        return frozenset(closure)
+
+    def nfa_to_dfa(self):
+        dfa_states = set()
+        dfa_transitions = {}
+        dfa_initial_state = self.epsilon_closure(self.q0)
+        dfa_final_states = set()
+
+        queue = [dfa_initial_state]
+        processed_states = set()
+
+        while queue:
+            current_states = queue.pop()
+            if current_states in processed_states:
+                continue
+
+            dfa_states.add(current_states)
+
+            for symbol in self.Sigma:
+                next_states = set()
+                for state in current_states:
+                    epsilon_transitions = self.delta.get(state, {}).get('', set())
+                    next_states.update(self.delta.get(state, {}).get(symbol, set()))
+                    next_states.update(self.epsilon_closure(state) for state in epsilon_transitions)
+
+                next_states_closure = frozenset(next_states)
+                dfa_transitions.setdefault(current_states, {})[symbol] = next_states_closure
+
+                if next_states_closure not in dfa_states:
+                    queue.append(next_states_closure)
+
+            processed_states.add(current_states)
+
+        for dfa_state in dfa_states:
+            if dfa_state.intersection(self.F):
+                dfa_final_states.add(dfa_state)
+
+        return {
+            'states': dfa_states,
+            'input_symbols': self.Sigma,
+            'transitions': dfa_transitions,
+            'initial_state': dfa_initial_state,
+            'final_states': dfa_final_states
+        }
+    
+    
