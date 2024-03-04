@@ -43,12 +43,19 @@ class Print:
         # print("DFA Transitions:", dfa['transitions'])
         # print("DFA Initial State:", dfa['initial_state'])
         # print("DFA Final States:", dfa['final_states'])
+        Print.create_graph(states=dfa['states'], 
+                           input_symbols=dfa['input_symbols'], 
+                           transitions=dfa['transitions'], 
+                           initial_state=dfa['initial_state'],
+                           final_states=dfa['final_states'],)
 
-        graph_dfa = VisualDFA(states=dfa['states'], 
-                input_symbols=dfa['input_symbols'], 
-                transitions=dfa['transitions'], 
-                initial_state=dfa['initial_state'], 
-                final_states=dfa['final_states'])
+    @staticmethod
+    def create_graph(states, input_symbols, transitions, initial_state ,final_states):
+        graph_dfa = VisualDFA(states=states, 
+                input_symbols=input_symbols, 
+                transitions=transitions, 
+                initial_state=initial_state, 
+                final_states=final_states)
 
         print("DFA Table:")
         print(graph_dfa.table)
