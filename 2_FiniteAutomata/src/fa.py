@@ -32,7 +32,7 @@ class FiniteAutomata:
 
         return True
     
-    def nfa_to_regular_grammar(self):
+    def fa_to_regular_grammar(self):
         # Initialize the productions list
         productions = []
 
@@ -49,33 +49,6 @@ class FiniteAutomata:
                         else:
                             # For final states, add a production A -> a where A is the current state
                             productions.append((state, symbol))
-
-        # Convert the productions list to a dictionary format
-        grammar = {}
-        for production in productions:
-            non_terminal, production_rhs = production
-            if non_terminal not in grammar:
-                grammar[non_terminal] = []
-            grammar[non_terminal].append(production_rhs)
-
-        return grammar
-    
-    def dfa_to_regular_grammar(self):
-        # Initialize the productions list
-        productions = []
-
-        # Add productions for each transition
-        for state in self.Q:
-            for symbol in self.Sigma:
-                if state in self.delta and symbol in self.delta[state]:
-                    next_state = self.delta[state][symbol]
-                    if next_state not in self.F:
-                        # For non-final states, add a production A -> aB where A is the current state,
-                        # a is the input symbol, and B is the next state
-                        productions.append((state, f"{symbol}{next_state}"))
-                    else:
-                        # For final states, add a production A -> a where A is the current state
-                        productions.append((state, symbol))
 
         # Convert the productions list to a dictionary format
         grammar = {}

@@ -8,12 +8,12 @@ def main():
 
     if result:
         print("\nThe Finite Automaton is deterministic.\n")
-        regular_grammar = fa.dfa_to_regular_grammar()
+        regular_grammar = fa.fa_to_regular_grammar()
         p.print_grammar(Vn=states, Vt=input_symbols, regular_grammar=regular_grammar)
         p.create_graph(states=states, input_symbols=input_symbols, transitions=transitions, initial_state=initial_state, final_states=final_states)
     else:
         print("\nThe Finite Automaton is not deterministic.\n")
-        regular_grammar = fa.nfa_to_regular_grammar()
+        regular_grammar = fa.fa_to_regular_grammar()
         p.print_grammar(Vn=states, Vt=input_symbols, regular_grammar=regular_grammar)
         dfa_result = fa.nfa_to_dfa()
         p.graph_dfa(dfa=dfa_result)
