@@ -60,11 +60,11 @@ class FiniteAutomata:
 
         return grammar
     
-    def powerset(self, states):
-        result = []
-        for i in range(1 << len(states)):
-            result.append(frozenset(states[j] for j in range(len(states)) if (i & (1 << j)) != 0))
-        return result
+    # def powerset(self, states):
+    #     result = []
+    #     for i in range(1 << len(states)):
+    #         result.append(frozenset(states[j] for j in range(len(states)) if (i & (1 << j)) != 0))
+    #     return result
 
     def epsilon_closure(self, state):
         closure = set()
