@@ -5,6 +5,18 @@ class Grammar:
         self.V_n = V_n
         self.V_t = V_t
         self.P = P
+        
+    def chomsky_type(self):
+        for production in self.P.items():
+            if production == "":
+                return "Type 0. Recursively Enumerable Grammar"
+            elif production[0] in self.V_n:
+                if len(production) > 1:
+                    if production[1] in self.V_t:
+                        return "Type 1. Context-Sensitive"
+                    elif production[1] in self.V_n:
+                        return "Type 2. Context-Free"
+        return "Type 3. Regular"
 
     def generate_string(self, word="S"):
         while (not self.check_word(word)):

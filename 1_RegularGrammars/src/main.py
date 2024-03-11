@@ -16,11 +16,10 @@ D1 = DFA({0,1,2,3,4},
           0,
           {0,3})
 
-
+print("\n" + D0.chomsky_type())
 Command.commands()
 
 while True:
-    
     command = input("Insert command: ")
     if command == 'h':
         Command.commands()
