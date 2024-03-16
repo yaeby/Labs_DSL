@@ -1,2 +1,5 @@
+from sys import *
+from interpreter import *
+
 if __name__ == '__main__':
-    print("Lexer")
+    print(parse(argv[1]))
