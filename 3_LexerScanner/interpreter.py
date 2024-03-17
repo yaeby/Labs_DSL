@@ -1,3 +1,5 @@
+import regex as re
+
 def lexer(contents):
     lines = contents.split('\n')
 
@@ -19,7 +21,21 @@ def lexer(contents):
             else:
                 temp_str += char
         tokens.append(temp_str)
-        print(tokens)
+        items = []
+        for token in tokens:
+            if token[0] == "'" or token[0] == '"':
+                if token[-1] == '"' or token[-1] == "'":
+                    items.append(("string", token))
+                else:
+                    # Throw Error
+                    break
+            elif re.match(r"[.a-zA-Z]+", token):
+                items.append(("symbol", token))
+            elif token in "+-*/":
+                items.append(("expression", token))
+            elif re.match(r"[.0-9]+", token):
+                items.append(("number", token))
+        return items
 
 
 def parse(file):
