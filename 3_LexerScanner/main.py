@@ -1,7 +1,5 @@
 import sys
-
 from lexer import Lexer
-# from printer import print_tokens
 
 def main():
     if len(sys.argv) < 2:
@@ -12,8 +10,10 @@ def main():
         lexer = Lexer(f.read(), sys.argv[1])
 
     tokens = lexer.lex()
+
+    # Printing the tokens
     for token in tokens:
-        print(f"{token.loc} {token.type.name} {token.value}")
+        print(f"{token.loc}:  {token.type.name} {token.value}")
 
 if __name__ == "__main__":
     main()
