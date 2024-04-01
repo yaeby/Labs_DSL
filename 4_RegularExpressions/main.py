@@ -3,7 +3,8 @@ import random
 
 def generate_string(regex):
     generated_string = ""
-    matches = re.findall(r'\((.*?)\)|\[.*?\]|\{(.*?)\}|([A-Za-z0-9]+)|(\|)', regex)
+    matches = re.findall(r'\((.*?)\)|\[.*?\]|{\d*,?\d*}|([A-Za-z0-9]+)', regex)
+    print(matches)
     for match in matches:
         if match[0]:
             generated_string += random.choice(match[0].split('|'))
@@ -17,7 +18,7 @@ def generate_string(regex):
 regexes = [
     r'(a|b)(c|d)E+G?',
     r'P(Q|R|S)T(UV|W|X)*Z+',
-    r'1(0|1)*2(3|4)*36'
+    r'1(0|1)*2(3|4){0,5}36'
 ]
 
 for regex in regexes:
