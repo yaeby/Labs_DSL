@@ -47,6 +47,6 @@ def generate_string(regex):
     return generated_string
 
 # Test the function with the provided regular expression
-regex = r'1(0|1)*2(3|4){0,5}36'
+regex = r'1(0|1)*2(3|4){5}36'
 print("Generated string for regex '{}':".format(regex))
 print(generate_string(regex))

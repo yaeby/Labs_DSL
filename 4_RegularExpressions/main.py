@@ -1,28 +1,59 @@
 import re
 import random
 
-def generate_string(regex):
+def generate_substring(expresion:str, condition:str) -> str:
+    substring = ''
+
+    if expresion.startswith('(') and expresion.endswith(')'):
+        elements = expresion[1:-1].split('|')
+    else:
+        elements = expresion
+
+    if condition.startswith('{') and condition.endswith('}'):
+        count = int(condition[1:-1])
+        for _ in range(count):
+            substring += random.choice(elements)
+    elif condition == '*':
+        count = random.randint(0, 5)
+        for _ in range(count):
+            element = random.choice(elements)
+            substring += element
+    elif condition == '+':
+        count = random.randint(1, 5)
+        for _ in range(count):
+            element = random.choice(elements)
+            substring += element
+    elif condition == '?':
+        if random.choice([True, False]):
+            substring = random.choice(elements)
+    else:
+        substring = random.choice(elements)
+
+    return substring
+
+def generate_string(regex:str) -> str:
     generated_string = ""
-    matches = re.findall(r'([*?+]|\{\d+\})|\((.*?)\)|([A-Za-z0-9])', regex)
-    print(matches)
-    # for i in range(len(matches)):
-    #     match = matches[i]
-    #     next_match = matches[i+1]
-    #     if match[2] or match[3]:
-    #         if next_match[0]:
+    matches = re.findall(r'([*?+]|\{\d+\})|(\(.*?\)|[A-Za-z0-9])', regex)
+    # print(matches)
+    for i in range(len(matches)):
+        expresion = matches[i][1]
+        if i == len(matches)-1:
+            condition = ''
+        else:
+            condition = matches[i + 1][0]
+        # print(expresion, condition)
 
-    #         elif next_match[2]:
-    #         else:
+        if expresion and condition:
+            # Code for the first condition
+            # print("Both sets are not empty.")
+            generated_string += generate_substring(expresion, condition)
+            
+        elif expresion:
+            # Code for the second condition
+            # print("Current set is not empty.")
+            generated_string += generate_substring(expresion, '')
 
-
-    # for match in matches:
-    #     if match[0]  or :
-    #         generated_string += random.choice(match[0].split('|'))
-    #     elif match[1]:
-    #         generated_string += random.choice(match[1].split(','))
-    #     # elif match[2]:
-    #     #     generated_string += match[2]
-    # return generated_string
+    return generated_string
                                                                                                                                                                                                  
 # Test the function with the provided regular expressions
 regexes = [
@@ -32,6 +63,6 @@ regexes = [
 ]
 
 for regex in regexes:
-    print("Generated string for regex '{}':".format(regex))
+    print("\nGenerated string for regex '{}':".format(regex))
     for i in range(0,5):
         print(generate_string(regex))
