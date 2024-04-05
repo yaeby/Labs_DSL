@@ -1,5 +1,6 @@
 import re
 import random
+from infinity_constant import LIMIT
 
 def generate_substring(expresion:str, condition:str) -> str:
     substring = ''
@@ -14,12 +15,12 @@ def generate_substring(expresion:str, condition:str) -> str:
         for _ in range(count):
             substring += random.choice(elements)
     elif condition == '*':
-        count = random.randint(0, 5)
+        count = random.randint(0, LIMIT)
         for _ in range(count):
             element = random.choice(elements)
             substring += element
     elif condition == '+':
-        count = random.randint(1, 5)
+        count = random.randint(1, LIMIT)
         for _ in range(count):
             element = random.choice(elements)
             substring += element
@@ -56,13 +57,12 @@ def generate_string(regex:str) -> str:
     return generated_string
                                                                                                                                                                                                  
 # Test the function with the provided regular expressions
-regexes = [
-    '(a|b)(c|d)E+G?',
-    'P(Q|R|S)T(UV|W|X)*Z+',
-    '1(0|1)*2(3|4){5}36'
-]
+with open('input.txt', 'r') as input_file:
+    regexes = input_file.readlines()
 
-for regex in regexes:
-    print("\nGenerated string for regex '{}':".format(regex))
-    for i in range(0,5):
-        print(generate_string(regex))
+with open('output.txt', 'w') as output_file:
+    for regex in regexes:
+        output_file.write("\nGenerated string for regex '" + regex + "' :")
+        for i in range(0,5):
+            output_file.writelines(generate_string(regex) + '\n')
+
