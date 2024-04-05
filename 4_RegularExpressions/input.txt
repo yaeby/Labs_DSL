@@ -1,3 +1,12 @@
 (a|b)(c|d)E+G?
 P(Q|R|S)T(UV|W|X)*Z+
 1(0|1)*2(3|4){5}36
+M?N{2}(O|P){3}Q*R+
+(X|Y|Z){3}8+(9|0)
+(H|i)(J|K)L*N?
+O(P|Q|R)+2(3|4)
+A*B(C|D|E)F(G|H|i){2}
+J+K(L|M|N)*O?(P|Q){3}
+(S|T)(U|V)W*Y+24
+L(M|N)O{3}P*Q(2|3)
+R*S(T|U|V)W(X|Y|Z){2}

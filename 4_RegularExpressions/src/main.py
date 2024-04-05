@@ -2,6 +2,9 @@ import re
 import random
 from infinity_constant import LIMIT
 
+def processing_regex(matches: list[any]) -> None:
+    print(matches)
+
 def generate_substring(expresion:str, condition:str) -> str:
     substring = ''
 
@@ -62,7 +65,9 @@ with open('input.txt', 'r') as input_file:
 
 with open('output.txt', 'w') as output_file:
     for regex in regexes:
-        output_file.write("\nGenerated string for regex '" + regex + "' :")
-        for i in range(0,5):
-            output_file.writelines(generate_string(regex) + '\n')
+        output_file.write("\nGenerated strings for regex '" + regex.strip() + "' :\n") 
+        for i in range(0, 5):
+            output_file.write(generate_string(regex) + '\n')
 
+regex = regexes[1]
+#TODO: Get matches and generated string 2 different functions
