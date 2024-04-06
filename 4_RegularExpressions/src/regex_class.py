@@ -26,19 +26,19 @@ class Regex:
         # print(matches)
         print(f"\nSequence of processing the following regular expression: {regex}")
         for i in range(len(matches)):
-            expresion = matches[i][1]
+            expression = matches[i][1]
             if i == len(matches)-1:
                 condition = ''
             else:
                 condition = matches[i + 1][0]
 
-            if expresion and condition:
+            if expression and condition:
                 print("Step " + str(step) + ":")
-                print(f'Looking at {expresion}{condition}')
+                print(f'Looking at {expression}{condition}')
                 step += 1
-            elif expresion:
+            elif expression:
                 print("Step " + str(step) + ":")
-                print(f'Looking at {expresion}')
+                print(f'Looking at {expression}')
                 step += 1
     
     '''
@@ -47,13 +47,13 @@ class Regex:
     Checks each condition (for example: *, +, ? or none)
     and generates the substring, returning it to string
     '''
-    def generate_substring(self, expresion: str, condition: str) -> str:
+    def generate_substring(self, expression: str, condition: str) -> str:
         substring = ''
 
-        if expresion.startswith('(') and expresion.endswith(')'):
-            elements = expresion[1:-1].split('|')
+        if expression.startswith('(') and expression.endswith(')'):
+            elements = expression[1:-1].split('|')
         else:
-            elements = expresion
+            elements = expression
 
         if condition.startswith('{') and condition.endswith('}'):
             count = int(condition[1:-1])
@@ -85,17 +85,17 @@ class Regex:
         matches = self.get_matches(regex)
 
         for i in range(len(matches)):
-            expresion = matches[i][1]
+            expression = matches[i][1]
             if i == len(matches)-1:
                 condition = ''
             else:
                 condition = matches[i + 1][0]
-            # print(expresion, condition)
+            # print(expression, condition)
 
-            if expresion and condition:
-                generated_string += self.generate_substring(expresion, condition)
+            if expression and condition:
+                generated_string += self.generate_substring(expression, condition)
                 
-            elif expresion:
-                generated_string += self.generate_substring(expresion, '')
+            elif expression:
+                generated_string += self.generate_substring(expression, '')
 
         return generated_string

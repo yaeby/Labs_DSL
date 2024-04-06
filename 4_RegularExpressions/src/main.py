@@ -17,4 +17,4 @@ if __name__ == "__main__":
                 output_file.write(obj.generate_string(regex) + '\n')
 
     #Step by step processing of a regex
-    obj.process_regex(regex=regexes[0])
+    obj.process_regex(regex=regexes[8])
