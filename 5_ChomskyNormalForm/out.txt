@@ -1,6 +1,0 @@
-S -> Z A | B Y | a
-Z -> a
-Y -> b
-B -> Y B | Y 
-S0 -> Z A | B Y | a
-A -> Z A | B Y | a
