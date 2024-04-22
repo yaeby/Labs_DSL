@@ -6,4 +6,3 @@ Productions:
 S -> a A | B b;
 A -> e | S;
 B -> b B | b 
-

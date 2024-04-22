@@ -8,4 +8,3 @@ A -> a | A B B a;
 B -> e | A
 C -> a A
 D -> a b 
-

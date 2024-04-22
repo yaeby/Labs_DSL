@@ -8,10 +8,10 @@ def union(lst1, lst2):
 
 def loadModel(modelPath):
 	file = open(modelPath).read()
-	K = (file.split("Variables:\n")[0].replace("Terminals:\n","").replace("\n",""))
-	V = (file.split("Variables:\n")[1].split("Productions:\n")[0].replace("Variables:\n","").replace("\n",""))
+	V_t = (file.split("Variables:\n")[0].replace("Terminals:\n","").replace("\n",""))
+	V_n = (file.split("Variables:\n")[1].split("Productions:\n")[0].replace("Variables:\n","").replace("\n",""))
 	P = (file.split("Productions:\n")[1])
-	return cleanAlphabet(K), cleanAlphabet(V), cleanProduction(P)
+	return cleanAlphabet(V_t), cleanAlphabet(V_n), cleanProduction(P)
 
 #Make production easy to work with
 def cleanProduction(expression):
@@ -43,7 +43,6 @@ def seekAndDestroy(target, productions):
 def setupDict(productions, variables, terms):
 	result = {}
 	for production in productions:
-		#
 		if production[left] in variables and production[right][0] in terms and len(production[right]) == 1:
 			result[production[right][0]] = production[left]
 	return result
