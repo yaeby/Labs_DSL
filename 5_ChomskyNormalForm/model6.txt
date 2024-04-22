@@ -1,0 +1,10 @@
+Terminals:
+a b 
+Variables:
+S A B C E
+Productions:
+S -> d B | A;
+A -> d | d S | a A d A B;
+B -> a C | a S | A C;
+E -> AS;
+C -> e

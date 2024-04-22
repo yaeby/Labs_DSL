@@ -1,7 +1,6 @@
-S -> A B | B A1 | A S | d
-A -> B A1 | A S | d
-A1 -> B A2
-A2 -> A B
-B -> A C | B S | a
-D -> A BC
-S0 -> A B | B A1 | A S | d
+S -> Z A | B Y | a
+Z -> a
+Y -> b
+B -> Y B | Y 
+S0 -> Z A | B Y | a
+A -> Z A | B Y | a
