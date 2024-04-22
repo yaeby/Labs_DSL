@@ -13,7 +13,7 @@ if __name__ == "__main__":
     with open('output.txt', 'w') as output_file:
         for regex in regexes:
             output_file.write("\nGenerated strings for regex '" + regex.strip() + "' :\n") 
-            for i in range(0, 5):
+            for i in range(0, 15):
                 output_file.write(obj.generate_string(regex) + '\n')
 
     #Step by step processing of a regex
