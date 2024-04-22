@@ -5,12 +5,7 @@ class CNF:
 
     def __init__(self, modelPath='model.txt'):
         self.V_t, self.V_n, self.P = helper.loadModel(modelPath)
-        self.V_nariablesJar = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"]
-
-    def isUnitary(self, rule, variables):
-        if rule[self.left] in variables and rule[self.right][0] in variables and len(rule[self.right]) == 1:
-            return True
-        return False
+        self.VariablesJar = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"]
 
     def isSimple(self, rule):
         if rule[self.left] in self.V_n and rule[self.right][0] in self.V_t and len(rule[self.right]) == 1:
@@ -31,7 +26,7 @@ class CNF:
                 for term in self.V_t:
                     for index, value in enumerate(production[self.right]):
                         if term == value and not term in dictionary:
-                            dictionary[term] = self.V_nariablesJar.pop()
+                            dictionary[term] = self.VariablesJar.pop()
                             self.V_n.append(dictionary[term])
                             newProductions.append((dictionary[term], [term]))
                             production[self.right][index] = dictionary[term]
@@ -47,7 +42,7 @@ class CNF:
             if k <= 2:
                 result.append(production)
             else:
-                newVar = self.V_nariablesJar.pop(0)
+                newVar = self.VariablesJar.pop(0)
                 self.V_n.append(newVar + '1')
                 result.append((production[self.left], [production[self.right][0]] + [newVar + '1']))
                 for i in range(1, k - 2):
@@ -65,6 +60,11 @@ class CNF:
                 if outlaw in production[self.right]:
                     newSet = newSet + [e for e in helper.rewrite(outlaw, production) if e not in newSet]
         self.P = newSet + ([p for p in self.P if p not in newSet])
+
+    def isUnitary(self, rule, variables):
+        if rule[self.left] in variables and rule[self.right][0] in variables and len(rule[self.right]) == 1:
+            return True
+        return False
 
     def unit_routine(self, rules):
         unitaries, result = [], []

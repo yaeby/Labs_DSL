@@ -1,10 +1,7 @@
-A1 -> B A2 | Z A3
-S -> A B | A A1 | a | A B1
-B1 -> B B2 | B A | a | A B1
-B2 -> B A | a | A B1
-Z -> b
-A2 -> Z A3
-A3 -> A C
-A -> a | A B1
-B -> AC
-S0 -> A B | A A1 | a | A B1
+S -> A B | B A1 | A S | d
+A -> B A1 | A S | d
+A1 -> B A2
+A2 -> A B
+B -> A C | B S | a
+D -> A BC
+S0 -> A B | B A1 | A S | d
