@@ -141,5 +141,5 @@ lexer = [temp('word','[A-Za-z]+'),
         temp('minus','\-')]
 
 string = '''proc (1+2-3,4);
-           proc (1+2-3,4);'''
+           proc (1+3,10-2-5);'''
 print (parse(grammar, {}, lex(string, lexer), grammar['S'][0]))
